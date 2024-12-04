@@ -1,4 +1,4 @@
-const Articles = [
+const Posts = [
     {
         id: 1,
         state: 'published',
@@ -46,4 +46,4 @@ const Articles = [
     },
 ];
 
-export default Articles;
+export default Posts;

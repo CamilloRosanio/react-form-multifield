@@ -6,21 +6,30 @@ function Main() {
 
     const [titleField, setTitleField] = useState('Default');
 
+    const [Feed, setFeed] = useState([]);
+
 
     const handleInputChange = (e) => {
-        console.log(e.target.value);
-
         setTitleField(e.target.value);
     }
 
     const handleFormSubmit = (e) => {
-        // Evito che il Submit ricarichi la pagina tramite "e" (EVENT)
-        // "e" è un OBJECT contenente tutte le info dell'evento lanciato
+        // Evito che il Submit ricarichi la pagina tramite "e" (EVENT), che è un OBJECT automaticamente fornito contenente tutte le info dell'evento lanciato
         e.preventDefault();
+        // Assegno i valori delle KEYS del nuovo OBJECT che sto creando
+        const newPost = {
+            title: titleField,
+        }
+        // Creo un NUOVO ARRAY contenente tutto ciò che era nell'Array originale + il NUOVO OBJECT
+        const updatedFeed = [...Feed, newPost,]
+        // Imposto lo USE-STATE sul nuovo Array aggiornato
+        setFeed(updatedFeed);
+        // Svuoto la casella dell'INPUT assegnando un valore vuoto al Field
+        setTitleField('');
     }
 
     const deletePost = (deleteIndex) => {
-        alert('Delete this post');
+        setFeed(Feed.filter((post, index) => index !== deleteIndex));
     }
 
     return (
@@ -46,14 +55,18 @@ function Main() {
                         <h3 className='debug'>Post List</h3>
 
                         <ul className='debug'>
-                            {Posts.map((post, index) =>
-                                <li key={post.id} className='debug'>
-                                    <h4>{post.title}</h4>
-                                    <p>{post.content}</p>
+                            {/* CONDIZIONE PER LA STAMPA SU DOM */}
+                            {Feed.length ?
+                                Feed.map((post, index) => (
+                                    <li key={index} className='debug'>
+                                        <h4>{post.title}</h4>
+                                        <p>{post.content}</p>
 
-                                    <button type='button' onClick={() => deletePost(index)}>Delete button</button>
-                                </li>
-                            )}
+                                        <button type='button' onClick={() => deletePost(index)}>Delete button</button>
+                                    </li>
+                                )) :
+                                <h3>No posts available</h3>
+                            }
                         </ul>
                     </section>
 
