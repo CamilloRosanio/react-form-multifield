@@ -28,8 +28,20 @@ function Main() {
         setTitleField('');
     }
 
+    const modifyTitle = (modifyIndex) => {
+        const newTitle = prompt('Insert new Title');
+
+        const updatedFeed = [...Feed];
+        updatedFeed[modifyIndex].title = newTitle;
+
+        setFeed(updatedFeed);
+    }
+
     const deletePost = (deleteIndex) => {
         setFeed(Feed.filter((post, index) => index !== deleteIndex));
+
+        console.log('Feed senza post cancellati:');
+        console.log(Feed);
     }
 
     return (
@@ -62,6 +74,7 @@ function Main() {
                                         <h4>{post.title}</h4>
                                         <p>{post.content}</p>
 
+                                        <button type='button' onClick={() => modifyTitle(index)}>Modify Title</button>
                                         <button type='button' onClick={() => deletePost(index)}>Delete button</button>
                                     </li>
                                 )) :
