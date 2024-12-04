@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 
+// import FormCreatePost from './formCreatePost';
+
 import Posts from '../data/Posts';
 
 
@@ -73,6 +75,16 @@ function Main() {
 
                     {/* FORM SECTION */}
                     <section>
+
+                        {/* <FormCreatePost
+                            handleSubmit={handleFormSubmit}
+                            handleFieldsChange={handleFormFieldsChange}
+                            title={formFields.title}
+                            content={formFields.content}
+                            img={formFields.img}
+                            published={formFields.published}
+                        /> */}
+
                         <form action="" className='formContainer' onSubmit={handleFormSubmit}>
                             <h2 className=''>Create Post</h2>
 
@@ -112,7 +124,7 @@ function Main() {
                                 <input type="checkbox" checked={formFields.published} name='published' id='publishedField' onChange={handleFormFieldsChange} className='valueInput' />
                             </div>
 
-                            <button className='button block'>Create post</button>
+                            <button>Create post</button>
                         </form>
                     </section>
 
