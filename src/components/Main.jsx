@@ -4,7 +4,20 @@ import Posts from '../data/Posts';
 
 function Main() {
 
-    const titleField = '';
+    const [titleField, setTitleField] = useState('Default');
+
+
+    const handleInputChange = (e) => {
+        console.log(e.target.value);
+
+        setTitleField(e.target.value);
+    }
+
+    const handleFormSubmit = (e) => {
+        // Evito che il Submit ricarichi la pagina tramite "e" (EVENT)
+        // "e" è un OBJECT contenente tutte le info dell'evento lanciato
+        e.preventDefault();
+    }
 
     return (
         <>
@@ -13,18 +26,29 @@ function Main() {
 
                     {/* FORM SECTION */}
                     <section>
-                        <form action="" className='debug'>
+                        <form action="" className='debug' onSubmit={handleFormSubmit}>
                             <h3 className='debug'>Insert Form</h3>
 
                             <label htmlFor="postTitle">Title</label>
-                            <input type="text" className='debug' id='postTitle' />
+                            <input type="text" name='postTitle' id='postTitle' value={titleField} onChange={handleInputChange} />
+
+                            <button>Create post</button>
 
                         </form>
                     </section>
 
                     {/* POST SECTION */}
                     <section>
+                        <h3 className='debug'>Post List</h3>
 
+                        <ul className='debug'>
+                            <li className='debug'>
+                                <h4>Post title</h4>
+                                <p>Post content</p>
+
+                                <button type='button'>Delete button</button>
+                            </li>
+                        </ul>
                     </section>
 
                 </div>
