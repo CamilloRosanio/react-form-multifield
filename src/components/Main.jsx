@@ -4,13 +4,22 @@ import Posts from '../data/Posts';
 
 function Main() {
 
-    const [titleField, setTitleField] = useState('Default');
+    // Invece di tanti USE-STATE per ciascun field, uso un solo USE-STATE del FORM al cui interno specifico le KEYS
+    const [formFields, setFormFields] = useState({
+        title: '',
+    })
 
     const [Feed, setFeed] = useState([]);
 
 
-    const handleInputChange = (e) => {
-        setTitleField(e.target.value);
+    const handleFormFieldsChange = (e) => {
+        // Assegno dinamicamente tutti i VALUE del FORM tramite le info che ci fornisce l'EVENT e la KEY dinamica tramite il NAME dell'INPUT
+        setFormFields({
+            // Importo tutte le KEYS da NON modificare così come sono
+            ...formFields,
+            // Modifico solo la KEY con il nome dell'INPUT, che deve coincidere con quello delle KEYS del FORM assegnate nello USE-STATE dinamico
+            [e.target.name]: e.target.value,
+        });
     }
 
     const handleFormSubmit = (e) => {
@@ -18,14 +27,14 @@ function Main() {
         e.preventDefault();
         // Assegno i valori delle KEYS del nuovo OBJECT che sto creando
         const newPost = {
-            title: titleField,
+            title: formFields.title,
         }
         // Creo un NUOVO ARRAY contenente tutto ciò che era nell'Array originale + il NUOVO OBJECT
         const updatedFeed = [...Feed, newPost,]
         // Imposto lo USE-STATE sul nuovo Array aggiornato
         setFeed(updatedFeed);
         // Svuoto la casella dell'INPUT assegnando un valore vuoto al Field
-        setTitleField('');
+        formFields.title = '';
     }
 
     const modifyTitle = (modifyIndex) => {
@@ -39,9 +48,6 @@ function Main() {
 
     const deletePost = (deleteIndex) => {
         setFeed(Feed.filter((post, index) => index !== deleteIndex));
-
-        console.log('Feed senza post cancellati:');
-        console.log(Feed);
     }
 
     return (
@@ -54,8 +60,8 @@ function Main() {
                         <form action="" className='debug' onSubmit={handleFormSubmit}>
                             <h3 className='debug'>Insert Form</h3>
 
-                            <label htmlFor="postTitle">Title</label>
-                            <input type="text" name='postTitle' id='postTitle' value={titleField} onChange={handleInputChange} />
+                            <label htmlFor="titleField">Title</label>
+                            <input type="text" name='title' id='titleField' value={formFields.title} onChange={handleFormFieldsChange} />
 
                             <button>Create post</button>
 
