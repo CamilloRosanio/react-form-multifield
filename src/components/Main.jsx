@@ -7,6 +7,10 @@ function Main() {
     // Invece di tanti USE-STATE per ciascun field, uso un solo USE-STATE del FORM al cui interno specifico le KEYS
     const [formFields, setFormFields] = useState({
         title: '',
+        content: '',
+        img: '',
+        category: '',
+        state: '',
     })
 
     const [Feed, setFeed] = useState([]);
@@ -28,13 +32,18 @@ function Main() {
         // Assegno i valori delle KEYS del nuovo OBJECT che sto creando
         const newPost = {
             title: formFields.title,
+            content: formFields.content,
+            img: formFields.img,
+            category: formFields.category,
+            state: formFields.state,
         }
         // Creo un NUOVO ARRAY contenente tutto ciò che era nell'Array originale + il NUOVO OBJECT
         const updatedFeed = [...Feed, newPost,]
         // Imposto lo USE-STATE sul nuovo Array aggiornato
         setFeed(updatedFeed);
         // Svuoto la casella dell'INPUT assegnando un valore vuoto al Field
-        formFields.title = '';
+
+        console.log(Feed);
     }
 
     const modifyTitle = (modifyIndex) => {
@@ -60,9 +69,31 @@ function Main() {
                         <form action="" className='formContainer' onSubmit={handleFormSubmit}>
                             <h2 className=''>Create Post</h2>
 
+                            {/* INPUTS */}
                             <div className='inputContainer'>
+                                {/* TITLE */}
                                 <label htmlFor="titleField">Title</label>
-                                <input type="text" name='title' id='titleField' value={formFields.title} onChange={handleFormFieldsChange} className='textInput' />
+                                <input type="text" name='title' id='titleField' value={formFields.title} onChange={handleFormFieldsChange} className='valueInput' required />
+
+                                {/* CONTENT */}
+                                <label htmlFor="contentField">Content</label>
+                                <input type="text" name='content' id='contentField' value={formFields.content} onChange={handleFormFieldsChange} className='valueInput' required />
+
+                                {/* IMG */}
+                                <label htmlFor="imgField">Image</label>
+                                <input type="text" name='img' id='imgField' value={formFields.img} onChange={handleFormFieldsChange} className='valueInput' />
+
+                                {/* CATEGORY */}
+                                <label htmlFor="categoryField">Category</label>
+                                <select name="category" id="categoryField" onChange={handleFormFieldsChange} className='valueInput' required>
+                                    <option value="React">React</option>
+                                    <option value="HTML">HTML</option>
+                                    <option value="Node.js">Node.js</option>
+                                </select>
+
+                                {/* STATE */}
+                                <label htmlFor="stateField">State</label>
+                                <input type="text" name='state' id='stateField' value={formFields.state} onChange={handleFormFieldsChange} className='valueInput' required />
                             </div>
 
                             <button className='button block'>Create post</button>
@@ -73,14 +104,14 @@ function Main() {
                     <section className='feed'>
                         <h3 className=''>Post List</h3>
 
-                        <ul className=''>
+                        <ul className='feedList'>
                             {/* CONDIZIONE PER LA STAMPA SU DOM */}
                             {Feed.length ?
                                 Feed.map((post, index) => (
                                     <li key={index} className='feedItem'>
                                         <div className='left'>
-                                            <h4>{index}</h4>
                                             <h4>{post.title}</h4>
+                                            <p><strong>{post.category}</strong></p>
                                             <p>{post.content}</p>
                                         </div>
 

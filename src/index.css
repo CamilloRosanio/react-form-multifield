@@ -28,10 +28,6 @@ header {
   padding: 1rem;
 }
 
-.block {
-  display: block;
-}
-
 .button {
   border: 2px solid rgb(0, 67, 167);
   border-radius: 15px;
@@ -80,12 +76,14 @@ form {
   align-items: center;
   padding: 1rem 0;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.textInput {
+.valueInput {
   border: 2px solid gray;
   border-radius: 5px;
   padding: 0.3rem 0.5rem;
+  max-width: 12%;
 }
 
 
