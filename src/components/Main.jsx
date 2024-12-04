@@ -53,38 +53,44 @@ function Main() {
     return (
         <>
             <main>
-                <div className="container debug">
+                <div className="container">
 
                     {/* FORM SECTION */}
                     <section>
-                        <form action="" className='debug' onSubmit={handleFormSubmit}>
-                            <h3 className='debug'>Insert Form</h3>
+                        <form action="" className='formContainer' onSubmit={handleFormSubmit}>
+                            <h2 className=''>Create Post</h2>
 
-                            <label htmlFor="titleField">Title</label>
-                            <input type="text" name='title' id='titleField' value={formFields.title} onChange={handleFormFieldsChange} />
+                            <div className='inputContainer'>
+                                <label htmlFor="titleField">Title</label>
+                                <input type="text" name='title' id='titleField' value={formFields.title} onChange={handleFormFieldsChange} className='textInput' />
+                            </div>
 
-                            <button>Create post</button>
-
+                            <button className='button block'>Create post</button>
                         </form>
                     </section>
 
                     {/* POST SECTION */}
-                    <section>
-                        <h3 className='debug'>Post List</h3>
+                    <section className='feed'>
+                        <h3 className=''>Post List</h3>
 
-                        <ul className='debug'>
+                        <ul className=''>
                             {/* CONDIZIONE PER LA STAMPA SU DOM */}
                             {Feed.length ?
                                 Feed.map((post, index) => (
-                                    <li key={index} className='debug'>
-                                        <h4>{post.title}</h4>
-                                        <p>{post.content}</p>
+                                    <li key={index} className='feedItem'>
+                                        <div className='left'>
+                                            <h4>{index}</h4>
+                                            <h4>{post.title}</h4>
+                                            <p>{post.content}</p>
+                                        </div>
 
-                                        <button type='button' onClick={() => modifyTitle(index)}>Modify Title</button>
-                                        <button type='button' onClick={() => deletePost(index)}>Delete button</button>
+                                        <div className='right'>
+                                            <button type='button' onClick={() => modifyTitle(index)} className='button gold'>Modify Title</button>
+                                            <button type='button' onClick={() => deletePost(index)} className='button red'>Delete</button>
+                                        </div>
                                     </li>
                                 )) :
-                                <h3>No posts available</h3>
+                                <h3 className='feedItem'>No posts available</h3>
                             }
                         </ul>
                     </section>
