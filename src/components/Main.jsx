@@ -48,7 +48,7 @@ function Main() {
         setFeed(updatedFeed);
         // Svuoto la casella dell'INPUT assegnando un valore vuoto al Field
 
-        console.log(Feed);
+        alert('Creation successful')
     }
 
     const modifyTitle = (modifyIndex) => {
@@ -95,7 +95,7 @@ function Main() {
                                 </select>
 
                                 {/* PUBLISHED */}
-                                <label htmlFor="published">Published</label>
+                                <label htmlFor="published">Publish</label>
                                 {/* <input type="text" name='published' id='publishedField' value={formFields.published} onChange={handleFormFieldsChange} className='valueInput' required /> */}
                                 <input type="checkbox" checked={formFields.published} name='published' id='publishedField' onChange={handleFormFieldsChange} className='valueInput' />
                             </div>
@@ -111,21 +111,23 @@ function Main() {
                         <ul className='feedList'>
                             {/* CONDIZIONE PER LA STAMPA SU DOM */}
                             {Feed.length ?
-                                Feed.map((post, index) => (
-                                    <li key={index} className='feedItem'>
-                                        <div className='left'>
-                                            <h4>{post.title}</h4>
-                                            <p><strong>{post.category + ' - '}</strong></p>
-                                            <p>{post.content}</p>
-                                        </div>
+                                Feed
+                                    .filter(post => post.published === true)
+                                    .map((post, index) => (
+                                        <li key={index} className='feedItem'>
+                                            <div className='left'>
+                                                <h4>{post.title}</h4>
+                                                <p><strong>{post.category + ' - '}</strong></p>
+                                                <p>{post.content}</p>
+                                            </div>
 
-                                        <div className='right'>
-                                            <p>{post.published ? 'published' : 'draft'}</p>
-                                            <button type='button' onClick={() => modifyTitle(index)} className='button gold'>Modify Title</button>
-                                            <button type='button' onClick={() => deletePost(index)} className='button red'>Delete</button>
-                                        </div>
-                                    </li>
-                                )) :
+                                            <div className='right'>
+                                                <p>{post.published ? 'published' : 'draft'}</p>
+                                                <button type='button' onClick={() => modifyTitle(index)} className='button gold'>Modify Title</button>
+                                                <button type='button' onClick={() => deletePost(index)} className='button red'>Delete</button>
+                                            </div>
+                                        </li>
+                                    )) :
                                 <h3 className='feedItem'>No posts available</h3>
                             }
                         </ul>
