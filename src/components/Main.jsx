@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
+
 import Posts from '../data/Posts';
 
 
@@ -10,7 +12,8 @@ function Main() {
         content: '',
         img: '',
         category: '',
-        published: '',
+        published: false,
+        tags: [],
     })
 
     const [Feed, setFeed] = useState([]);
@@ -41,6 +44,7 @@ function Main() {
             img: formFields.img,
             category: formFields.category,
             published: formFields.published,
+            tags: formFields.tags,
         }
         // Creo un NUOVO ARRAY contenente tutto ciò che era nell'Array originale + il NUOVO OBJECT
         const updatedFeed = [...Feed, newPost,]
@@ -94,8 +98,16 @@ function Main() {
                                     <option value="Node.js">Node.js</option>
                                 </select>
 
+                                {/* TAGS */}
+                                {/* <label htmlFor="tagsField">Tags</label>
+                                <select name="tags" id="tagsField" onChange={handleFormFieldsChange} value={formFields.tags} multiple>
+                                    <option value="a">a</option>
+                                    <option value="b">b</option>
+                                    <option value="c">c</option>
+                                </select> */}
+
                                 {/* PUBLISHED */}
-                                <label htmlFor="published">Publish</label>
+                                <label htmlFor="publishedField">Publish</label>
                                 {/* <input type="text" name='published' id='publishedField' value={formFields.published} onChange={handleFormFieldsChange} className='valueInput' required /> */}
                                 <input type="checkbox" checked={formFields.published} name='published' id='publishedField' onChange={handleFormFieldsChange} className='valueInput' />
                             </div>
@@ -119,6 +131,7 @@ function Main() {
                                                 <h4>{post.title}</h4>
                                                 <p><strong>{post.category + ' - '}</strong></p>
                                                 <p>{post.content}</p>
+                                                <p>{post.tags}</p>
                                             </div>
 
                                             <div className='right'>
