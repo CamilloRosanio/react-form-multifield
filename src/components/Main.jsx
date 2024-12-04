@@ -19,6 +19,10 @@ function Main() {
         e.preventDefault();
     }
 
+    const deletePost = (deleteIndex) => {
+        alert('Delete this post');
+    }
+
     return (
         <>
             <main>
@@ -42,12 +46,14 @@ function Main() {
                         <h3 className='debug'>Post List</h3>
 
                         <ul className='debug'>
-                            <li className='debug'>
-                                <h4>Post title</h4>
-                                <p>Post content</p>
+                            {Posts.map((post, index) =>
+                                <li key={post.id} className='debug'>
+                                    <h4>{post.title}</h4>
+                                    <p>{post.content}</p>
 
-                                <button type='button'>Delete button</button>
-                            </li>
+                                    <button type='button' onClick={() => deletePost(index)}>Delete button</button>
+                                </li>
+                            )}
                         </ul>
                     </section>
 
