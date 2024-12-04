@@ -10,20 +10,25 @@ function Main() {
         content: '',
         img: '',
         category: '',
-        state: '',
+        published: '',
     })
 
     const [Feed, setFeed] = useState([]);
 
 
     const handleFormFieldsChange = (e) => {
+        // Se il valore è TEXT o CHECKBOX rendo due risultati diversi tramite TERNARY-OPERATOR
+        const receivedValue = (e.target.type === 'checkbox' ? e.target.checked : e.target.value);
+
         // Assegno dinamicamente tutti i VALUE del FORM tramite le info che ci fornisce l'EVENT e la KEY dinamica tramite il NAME dell'INPUT
         setFormFields({
             // Importo tutte le KEYS da NON modificare così come sono
             ...formFields,
             // Modifico solo la KEY con il nome dell'INPUT, che deve coincidere con quello delle KEYS del FORM assegnate nello USE-STATE dinamico
-            [e.target.name]: e.target.value,
+            [e.target.name]: receivedValue,
         });
+
+        console.log(e.target.checked)
     }
 
     const handleFormSubmit = (e) => {
@@ -35,7 +40,7 @@ function Main() {
             content: formFields.content,
             img: formFields.img,
             category: formFields.category,
-            state: formFields.state,
+            published: formFields.published,
         }
         // Creo un NUOVO ARRAY contenente tutto ciò che era nell'Array originale + il NUOVO OBJECT
         const updatedFeed = [...Feed, newPost,]
@@ -48,10 +53,8 @@ function Main() {
 
     const modifyTitle = (modifyIndex) => {
         const newTitle = prompt('Insert new Title');
-
         const updatedFeed = [...Feed];
         updatedFeed[modifyIndex].title = newTitle;
-
         setFeed(updatedFeed);
     }
 
@@ -91,9 +94,10 @@ function Main() {
                                     <option value="Node.js">Node.js</option>
                                 </select>
 
-                                {/* STATE */}
-                                <label htmlFor="stateField">State</label>
-                                <input type="text" name='state' id='stateField' value={formFields.state} onChange={handleFormFieldsChange} className='valueInput' required />
+                                {/* PUBLISHED */}
+                                <label htmlFor="published">Published</label>
+                                {/* <input type="text" name='published' id='publishedField' value={formFields.published} onChange={handleFormFieldsChange} className='valueInput' required /> */}
+                                <input type="checkbox" checked={formFields.published} name='published' id='publishedField' onChange={handleFormFieldsChange} className='valueInput' />
                             </div>
 
                             <button className='button block'>Create post</button>
@@ -111,11 +115,12 @@ function Main() {
                                     <li key={index} className='feedItem'>
                                         <div className='left'>
                                             <h4>{post.title}</h4>
-                                            <p><strong>{post.category}</strong></p>
+                                            <p><strong>{post.category + ' - '}</strong></p>
                                             <p>{post.content}</p>
                                         </div>
 
                                         <div className='right'>
+                                            <p>{post.published ? 'published' : 'draft'}</p>
                                             <button type='button' onClick={() => modifyTitle(index)} className='button gold'>Modify Title</button>
                                             <button type='button' onClick={() => deletePost(index)} className='button red'>Delete</button>
                                         </div>
