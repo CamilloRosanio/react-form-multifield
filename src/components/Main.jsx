@@ -13,7 +13,7 @@ function Main() {
         title: '',
         content: '',
         img: '',
-        category: 'React',
+        category: '',
         published: false,
         tags: [],
     })
@@ -113,6 +113,7 @@ function Main() {
                                 {/* CATEGORY */}
                                 <label htmlFor="categoryField">Category</label>
                                 <select name="category" id="categoryField" onChange={handleFormFieldsChange} className='valueInput' required>
+                                    <option value="">Select Category</option>
                                     <option value="React">React</option>
                                     <option value="HTML">HTML</option>
                                     <option value="Node.js">Node.js</option>
