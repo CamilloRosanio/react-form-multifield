@@ -148,15 +148,15 @@ function Main() {
                                     .filter(post => post.published === true)
                                     .map((post, index) => (
                                         <li key={index} className='feedItem'>
-                                            <div className='left'>
+                                            <div className='cardBody'>
                                                 <p><strong>{post.category}</strong></p>
                                                 <h4>{post.title}</h4>
                                                 <p>{post.content}</p>
                                                 <p>{post.tags}</p>
+                                                {/* <p>{post.published ? 'published' : 'draft'}</p> */}
                                             </div>
 
-                                            <div className='right'>
-                                                <p>{post.published ? 'published' : 'draft'}</p>
+                                            <div className='bottomControls'>
                                                 <button type='button' onClick={() => modifyTitle(index)} className='button gold'>Modify Title</button>
                                                 <button type='button' onClick={() => deletePost(index)} className='button red'>Delete</button>
                                             </div>

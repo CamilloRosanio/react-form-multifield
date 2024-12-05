@@ -95,6 +95,14 @@ form {
 # FEED
 /******************************************/
 
+.feedList {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
 .feed>h3 {
   margin-bottom: 1rem;
   ;
@@ -102,27 +110,25 @@ form {
 
 .feedItem {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
   gap: 1rem;
   padding: 1rem;
-  margin-bottom: .5rem;
   background-color: rgb(235, 235, 235);
   font-size: 0.8rem;
+  min-width: 31%;
 }
 
-.left {
+.feedItem .cardBody {
   display: flex;
-  align-items: center;
-  flex-grow: 1;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 0.3rem;
 }
 
-.right {
+.bottomControls {
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 1rem;
+  justify-content: flex-start;
+  gap: .5rem;
 }
 
 
