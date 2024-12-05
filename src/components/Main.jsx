@@ -13,7 +13,7 @@ function Main() {
         title: '',
         content: '',
         img: '',
-        category: '',
+        category: 'React',
         published: false,
         tags: [],
     })
@@ -49,12 +49,20 @@ function Main() {
             tags: formFields.tags,
         }
         // Creo un NUOVO ARRAY contenente tutto ciò che era nell'Array originale + il NUOVO OBJECT
-        const updatedFeed = [...Feed, newPost,]
+        const updatedFeed = [...Feed, newPost]
         // Imposto lo USE-STATE sul nuovo Array aggiornato
         setFeed(updatedFeed);
         // Svuoto la casella dell'INPUT assegnando un valore vuoto al Field
+        setFormFields({
+            title: '',
+            content: '',
+            img: '',
+            category: 'React',
+            published: false,
+            tags: [],
+        })
 
-        alert('Creation successful')
+        // alert('Creation successful')
     }
 
     const modifyTitle = (modifyIndex) => {
@@ -140,8 +148,8 @@ function Main() {
                                     .map((post, index) => (
                                         <li key={index} className='feedItem'>
                                             <div className='left'>
+                                                <p><strong>{post.category}</strong></p>
                                                 <h4>{post.title}</h4>
-                                                <p><strong>{post.category + ' - '}</strong></p>
                                                 <p>{post.content}</p>
                                                 <p>{post.tags}</p>
                                             </div>
