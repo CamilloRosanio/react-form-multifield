@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-// import FormCreatePost from './formCreatePost';
+import FormCreatePost from './formCreatePost';
 
 import Posts from '../data/Posts';
 
@@ -84,33 +84,32 @@ function Main() {
                     {/* FORM SECTION */}
                     <section>
 
-                        {/* <FormCreatePost
+                        <FormCreatePost
                             handleSubmit={handleFormSubmit}
                             handleFieldsChange={handleFormFieldsChange}
                             title={formFields.title}
                             content={formFields.content}
                             img={formFields.img}
                             published={formFields.published}
-                        /> */}
+                        />
 
-                        <form action="" className='formContainer' onSubmit={handleFormSubmit}>
+                        {/* <form action="" className='formContainer' onSubmit={handleFormSubmit}>
                             <h2 className=''>Create Post</h2>
 
-                            {/* INPUTS */}
                             <div className='inputContainer'>
-                                {/* TITLE */}
+                                
                                 <label htmlFor="titleField">Title</label>
                                 <input type="text" name='title' id='titleField' placeholder='insert title' value={formFields.title} onChange={handleFormFieldsChange} className='valueInput' required />
 
-                                {/* CONTENT */}
+                                
                                 <label htmlFor="contentField">Content</label>
                                 <input type="text" name='content' id='contentField' placeholder='insert content' value={formFields.content} onChange={handleFormFieldsChange} className='valueInput' required />
 
-                                {/* IMG */}
+                                
                                 <label htmlFor="imgField">Image</label>
                                 <input type="text" name='img' id='imgField' placeholder='insert image' value={formFields.img} onChange={handleFormFieldsChange} className='valueInput' />
 
-                                {/* CATEGORY */}
+                                
                                 <label htmlFor="categoryField">Category</label>
                                 <select name="category" id="categoryField" onChange={handleFormFieldsChange} className='valueInput' required>
                                     <option value="">Select Category</option>
@@ -119,22 +118,13 @@ function Main() {
                                     <option value="Node.js">Node.js</option>
                                 </select>
 
-                                {/* TAGS */}
-                                {/* <label htmlFor="tagsField">Tags</label>
-                                <select name="tags" id="tagsField" onChange={handleFormFieldsChange} value={formFields.tags} multiple>
-                                    <option value="a">a</option>
-                                    <option value="b">b</option>
-                                    <option value="c">c</option>
-                                </select> */}
-
-                                {/* PUBLISHED */}
+                                
                                 <label htmlFor="publishedField">Publish</label>
-                                {/* <input type="text" name='published' id='publishedField' value={formFields.published} onChange={handleFormFieldsChange} className='valueInput' required /> */}
                                 <input type="checkbox" checked={formFields.published} name='published' id='publishedField' onChange={handleFormFieldsChange} className='valueInput' />
                             </div>
 
                             <button className='button'>Create post</button>
-                        </form>
+                        </form> */}
                     </section>
 
                     {/* POST SECTION */}

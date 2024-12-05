@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-function FormCreatePost(
+function FormCreatePost({
     handleSubmit,
     handleFieldsChange,
     title,
     content,
     img,
     published
-) {
+}) {
 
     return (
         <>
@@ -31,6 +31,7 @@ function FormCreatePost(
                     {/* CATEGORY */}
                     <label htmlFor="categoryField">Category</label>
                     <select name="category" id="categoryField" onChange={handleFieldsChange} className='valueInput' required>
+                        <option value="">Select Category</option>
                         <option value="React">React</option>
                         <option value="HTML">HTML</option>
                         <option value="Node.js">Node.js</option>
@@ -49,7 +50,7 @@ function FormCreatePost(
                     <input type="checkbox" checked={published} name='published' id='publishedField' onChange={handleFieldsChange} className='valueInput' />
                 </div>
 
-                <button>Create post</button>
+                <button className='button'>Create post</button>
             </form>
         </>
     )
