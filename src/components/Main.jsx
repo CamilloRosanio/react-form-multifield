@@ -100,15 +100,15 @@ function Main() {
                             <div className='inputContainer'>
                                 {/* TITLE */}
                                 <label htmlFor="titleField">Title</label>
-                                <input type="text" name='title' id='titleField' value={formFields.title} onChange={handleFormFieldsChange} className='valueInput' required />
+                                <input type="text" name='title' id='titleField' placeholder='insert title' value={formFields.title} onChange={handleFormFieldsChange} className='valueInput' required />
 
                                 {/* CONTENT */}
                                 <label htmlFor="contentField">Content</label>
-                                <input type="text" name='content' id='contentField' value={formFields.content} onChange={handleFormFieldsChange} className='valueInput' required />
+                                <input type="text" name='content' id='contentField' placeholder='insert content' value={formFields.content} onChange={handleFormFieldsChange} className='valueInput' required />
 
                                 {/* IMG */}
                                 <label htmlFor="imgField">Image</label>
-                                <input type="text" name='img' id='imgField' value={formFields.img} onChange={handleFormFieldsChange} className='valueInput' />
+                                <input type="text" name='img' id='imgField' placeholder='insert image' value={formFields.img} onChange={handleFormFieldsChange} className='valueInput' />
 
                                 {/* CATEGORY */}
                                 <label htmlFor="categoryField">Category</label>
@@ -133,7 +133,7 @@ function Main() {
                                 <input type="checkbox" checked={formFields.published} name='published' id='publishedField' onChange={handleFormFieldsChange} className='valueInput' />
                             </div>
 
-                            <button>Create post</button>
+                            <button className='button'>Create post</button>
                         </form>
                     </section>
 
